@@ -12,5 +12,8 @@
   "license": "MPL-2.0",
   "imageUrl": "https://gitlab.com/reyohoho/reyohoho/-/raw/vue/src/assets/basedge.png",
   "source": "https://yskra-zero.github.io/plugins/reyohoho.js",
-  "apiVersion": 0
+  "apiVersion": 0,
+  "dependencies": {
+    "dev.yskra.iframePlayer": "1.0.0"
+  }
 }

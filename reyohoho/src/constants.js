@@ -19,10 +19,10 @@ export const SUPPORT_STATUS = Object.freeze({
 
 /** @type {Record<SUPPORT_STATUS, { key: string, color: string }>} */
 export const SUPPORT_STATUS_FORMATTED = Object.freeze({
-  [SUPPORT_STATUS.UNKNOWN]: { key: 'unknown', color: 'error' },
-  [SUPPORT_STATUS.NOT_SUPPORTED]: { key: 'notSupported', color: 'error' },
-  [SUPPORT_STATUS.NATIVE]: { key: 'native', color: 'success' },
-  [SUPPORT_STATUS.PROXY]: { key: 'proxy', color: 'warning' },
+  [SUPPORT_STATUS.UNKNOWN]: { key: 'unknown', key_note: 'unknown_note', color: 'error' },
+  [SUPPORT_STATUS.NOT_SUPPORTED]: { key: 'notSupported', key_note: 'notSupported_note', color: 'error' },
+  [SUPPORT_STATUS.NATIVE]: { key: 'native', key_note: 'native_note', color: 'success' },
+  [SUPPORT_STATUS.PROXY]: { key: 'proxy', key_note: 'proxy_note', color: 'warning' },
 });
 
 /** @type {Record<string, typeof SUPPORT_STATUS[keyof typeof SUPPORT_STATUS]>} */

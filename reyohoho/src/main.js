@@ -28,6 +28,7 @@ const firebaseConfig = {
 export default async function plugin({ defineConfig, defineLocales }) {
   const config = defineConfig({
     token: '',
+    needPlayerControl: Yskra.platform.isTV,
   });
   const bus = useAppBus();
   const { t } = useI18n();
@@ -35,7 +36,7 @@ export default async function plugin({ defineConfig, defineLocales }) {
 
   const rmPlayer = bus.call('webPlayer.custom:add', {
     name: 'playerJS',
-    canPlay: () => false, // will be used by force select: ?type=playerJS
+    canPlay: () => false, // only force select: ?type=playerJS
     create: usePlayerJSIframe,
   });
 
@@ -63,6 +64,8 @@ export default async function plugin({ defineConfig, defineLocales }) {
       body: h(() => h(SelectPlayer, {
         payload,
         api,
+        'needPlayerControl': config.needPlayerControl,
+        'onUpdate:needPlayerControl': (value) => config.needPlayerControl = value,
       })),
     });
   }

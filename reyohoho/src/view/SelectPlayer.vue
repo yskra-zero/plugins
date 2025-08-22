@@ -17,6 +17,7 @@ const props = defineProps<{
   };
   api: ReturnType<typeof createApi>;
 }>();
+const needPlayerControl = defineModel<boolean>('needPlayerControl')
 const router = useRouter();
 const bus = useAppBus();
 const { t } = useI18n();
@@ -76,6 +77,11 @@ async function getKpId() {
 }
 
 async function openPlayer(player: { id: string; url: string; type: string; status: typeof SUPPORT_STATUS[keyof typeof SUPPORT_STATUS] }, event: Event) {
+  if (!needPlayerControl.value) {
+    openDefaultPlayer(player.url);
+    return;
+  }
+
   if (player.status === SUPPORT_STATUS.PROXY || player.status === SUPPORT_STATUS.NATIVE) {
     router.push({ name: 'player', query: {
       url: player.url,
@@ -89,13 +95,17 @@ async function openPlayer(player: { id: string; url: string; type: string; statu
     });
 
     onConfirm(() => {
-      router.push({ name: 'player', query: {
-        url: player.url,
-        type: PLAYER_TO_CDN.DEFAULT,
-        playerOpts: JSON.stringify({ noProxy: true }),
-      } });
+      openDefaultPlayer(player.url);
     });
   }
+}
+
+function openDefaultPlayer(url: string) {
+  router.push({ name: 'player', query: {
+      url: url,
+      type: PLAYER_TO_CDN.DEFAULT,
+      playerOpts: JSON.stringify({ noProxy: true }),
+    } });
 }
 </script>
 
@@ -112,19 +122,43 @@ async function openPlayer(player: { id: string; url: string; type: string; statu
     </p>
   </div>
 
-  <BaseMenu v-else class="w-full p-0">
-    <BaseMenuItem v-for="player in players" :key="player.id">
-      <BaseButton class="my-2 h-full justify-start p-5" @click="openPlayer(player, $event)">
-        <div>
-          <span>{{ player.name }}</span>
-
-          <BaseBadge class="ml-2" :color="player.badge.color">
-            {{ $t(player.badge.key) }}
-          </BaseBadge>
+  <template v-else>
+    <BaseMenu class="w-full p-0">
+      <BaseMenuItem>
+        <div class="flex items-center" @click="needPlayerControl = !needPlayerControl">
+          <div>
+            <BaseToggle :checked="needPlayerControl"/>
+          </div>
+          <div>
+            <p class="ml-4 text-base">{{ $t('needPlayerControl') }}</p>
+            <p class="ml-4 text-sm">{{ $t('needPlayerControl_note') }}</p>
+          </div>
         </div>
-      </BaseButton>
-    </BaseMenuItem>
-  </BaseMenu>
+      </BaseMenuItem>
+      <BaseMenuItem v-for="player in players" :key="player.id">
+        <BaseButton class="my-2 h-full justify-start p-5 bg-base-300" @click="openPlayer(player, $event)">
+          <div>
+            <span>{{ player.name }}</span>
+
+            <BaseBadge class="ml-2" :color="player.badge.color" v-if="needPlayerControl">
+              {{ $t(player.badge.key) }}
+            </BaseBadge>
+          </div>
+        </BaseButton>
+      </BaseMenuItem>
+    </BaseMenu>
+
+    <BaseMenu class="w-full p-0 bg-base-300 rounded-box mt-5" v-if="needPlayerControl">
+      <BaseMenuItem v-for="(status, k) in SUPPORT_STATUS_FORMATTED" :key="k">
+        <div>
+          <BaseBadge class="ml-2" :color="status.color">
+            {{ $t(status.key) }}
+          </BaseBadge>
+          <span>- {{ $t(status.key_note) }}</span>
+        </div>
+      </BaseMenuItem>
+    </BaseMenu>
+</template>
 </template>
 
 <style scoped>

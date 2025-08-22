@@ -1,10 +1,16 @@
 {
   "watchOnline": "Watch Online",
   "selectPlayer": "Select Player",
+  "needPlayerControl": "Need to intercept player control",
+  "needPlayerControl_note": "Usually needed when your only input device is a remote control",
   "unknown": "Unknown",
+  "unknown_note": "Player is not checked and is not known what type of API control it supports.",
   "notSupported": "Not Supported",
+  "notSupported_note": "Player can not be controlled programmatically",
   "native": "Native",
+  "native_note": "Player can be controlled directly through its API.",
   "proxy": "Proxy",
+  "proxy_note": "Player will be launched through a proxy to add a control API layer",
   "errorLoadData": "Error loading data",
   "confirmRunUnsupportedPlayer": "Do you want to run unsupported player ? There is no player control API support for the selected source.\nControl buttons of the application will not be available (mouse only).",
   "confirmRunUnknownPlayer": "Do you want to run an unknown player? The player will be launched as is without attempting to connect the control API - Control buttons of the application will not be available (mouse only)."
