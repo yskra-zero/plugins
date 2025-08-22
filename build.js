@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 
 import { exec } from 'node:child_process';
+import { copyFile } from 'node:fs';
 import { glob } from 'glob';
-import { copyFile } from 'fs';
 
 glob('**/**/manifest.json')
   .then((files) => files
@@ -17,7 +17,7 @@ glob('**/**/manifest.json')
     })),
   );
 
-copyFile('repo.json', 'dist/repo.json', (err) => {
+copyFile('./repo.json', 'dist/repo.json', (err) => {
   if (err) {
     throw err;
   }
