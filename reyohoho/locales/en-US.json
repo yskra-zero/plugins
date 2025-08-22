@@ -1,0 +1,11 @@
+{
+  "watchOnline": "Watch Online",
+  "selectPlayer": "Select Player",
+  "unknown": "Unknown",
+  "notSupported": "Not Supported",
+  "native": "Native",
+  "proxy": "Proxy",
+  "errorLoadData": "Error loading data",
+  "confirmRunUnsupportedPlayer": "Do you want to run unsupported player ? There is no player control API support for the selected source.\nControl buttons of the application will not be available (mouse only).",
+  "confirmRunUnknownPlayer": "Do you want to run an unknown player? The player will be launched as is without attempting to connect the control API - Control buttons of the application will not be available (mouse only)."
+}

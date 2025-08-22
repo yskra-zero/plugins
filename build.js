@@ -2,6 +2,7 @@
 
 import { exec } from 'node:child_process';
 import { glob } from 'glob';
+import { copyFile } from 'fs';
 
 glob('**/**/manifest.json')
   .then((files) => files
@@ -15,3 +16,10 @@ glob('**/**/manifest.json')
       console.error(`stderr: ${stderr}`);
     })),
   );
+
+copyFile('repo.json', 'dist/repo.json', (err) => {
+  if (err) {
+    throw err;
+  }
+  console.log('dist/repo.json');
+});

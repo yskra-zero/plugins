@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "node build.js",
-		"dev:MyPlugin": "TARGET=MyPlugin/ vite build --mode development"
+		"dev:reyohoho": "TARGET=reyohoho/ vite build --mode development"
 	},
 	"packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748",
 	"author": "Yskra Team",
@@ -22,6 +22,7 @@
 	},
 	"dependencies": {
 		"@vitejs/plugin-vue": "^6.0.1",
+		"firebase": "^12.1.0",
 		"glob": "^11.0.3",
 		"postcss": "^8.5.6",
 		"postcss-nested": "^7.0.2",

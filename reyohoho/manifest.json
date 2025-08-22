@@ -1,0 +1,16 @@
+{
+  "name": "ReYohoho",
+  "overview:en": "Watch online movies",
+  "overview:ru": "Смотреть фильмы онлайн",
+  "description:ru": "Работает только веб-плеере. ReYohoho находит фильмы в CDN плеерах доступные только в iframe",
+  "description:en": "Work only web player. ReYohoho finds movies in CDN players that are only available in iframe",
+  "version": "1.0.0",
+  "author": "Xinos",
+  "homepageUrl": "https://github.com/yskra-zero/plugins",
+  "supportUrl": "https://github.com/yskra-zero/plugins/issues",
+  "id": "dev.yskra-zero.reyohoho",
+  "license": "MPL-2.0",
+  "imageUrl": "https://gitlab.com/reyohoho/reyohoho/-/raw/vue/src/assets/basedge.png",
+  "source": "https://yskra-zero.github.io/plugins/reyohoho.js",
+  "apiVersion": 0
+}
