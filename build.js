@@ -35,7 +35,7 @@ copyFile('repo.json', 'dist/repo.json', (err) => {
 
 readdir(resolve(__dirname, 'dist'), (err, files) => {
   if (err) {
-    console.error('Ошибка при чтении папки dist:', err);
+    console.error(err);
     return;
   }
 
@@ -44,20 +44,15 @@ readdir(resolve(__dirname, 'dist'), (err, files) => {
     .join('\n');
 
   const html = `
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <title>Yskra plugins</title>
-</head>
-<body>
-  <h1>Yskra plugins</h1>
-  <ul>
-    ${links}
-  </ul>
-</body>
-</html>
-`;
+    <!DOCTYPE html>
+    <html lang="">
+    <head><meta charset="UTF-8" /><title>Yskra plugins</title></head>
+    <body style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+    <h1>Yskra plugins</h1>
+    <ul>${links}</ul>
+    </body>
+    </html>
+  `;
 
   writeFile('dist/index.html', html, (writeErr) => {
     if (writeErr) {
